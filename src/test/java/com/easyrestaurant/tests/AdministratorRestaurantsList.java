@@ -27,6 +27,7 @@ public class AdministratorRestaurantsList {
         driver.findElement(By.cssSelector("[href=\"/restaurants\"]")).click();
 
         driver.findElement(By.cssSelector("[href=\"/?tag=pizza\"]")).isDisplayed();
+        driver.close();
 
     }
 
