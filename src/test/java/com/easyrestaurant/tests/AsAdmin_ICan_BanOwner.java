@@ -9,9 +9,9 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class ID7_TestBanOwnerAsAdmin {
+public class AsAdmin_ICan_BanOwner {
 
-	@Test(priority = 1)
+	@Test
 	public void test() {
 
 		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
@@ -41,12 +41,15 @@ public class ID7_TestBanOwnerAsAdmin {
 		ownerButton.click();
 
 		WebElement activeOwnerButton = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr[1]/td[5]/button"));
-		activeOwnerButton.click();
+		WebElement statusMsg = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr[1]/td[4]/p"));
 
-		WebElement activityMsg = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr[1]/td[4]/p"));
+		if (statusMsg.getText() == "Active"){
+			activeOwnerButton.click();
+			statusMsg = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr[1]/td[4]/p"));
+		}
 
 		String expectedActivityMsg = "Banned";
-		Assert.assertEquals(expectedActivityMsg, activityMsg.getText());
+		Assert.assertEquals(expectedActivityMsg, statusMsg.getText());
 
 		driver.close();
 	}
