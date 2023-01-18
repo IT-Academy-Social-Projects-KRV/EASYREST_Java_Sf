@@ -5,17 +5,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
-public class Test1 {
+public class HomePage {
 	
 	@Test
-	public void Tested() {
+	public void Testing() {
 		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
 		WebDriver driver= new ChromeDriver();
 		
 		sleep(3000);
 		driver.manage().window().maximize();
 		
-		String url = "http://localhost:3000/restaurants";
+		String url = "http://localhost:3000";
 		driver.get(url);
 		
 		JavascriptExecutor js=(JavascriptExecutor)driver;
@@ -23,7 +23,7 @@ public class Test1 {
 		
 		sleep(3000);
 		
-		js.executeScript("window.scrollBy(0,500)", "");
+		js.executeScript("window.scrollBy(0,1000)", "");
 		
 		
 		
