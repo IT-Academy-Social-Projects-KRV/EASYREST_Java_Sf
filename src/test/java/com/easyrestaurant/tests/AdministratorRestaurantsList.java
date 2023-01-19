@@ -3,6 +3,7 @@ package com.easyrestaurant.tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -33,6 +34,7 @@ public class AdministratorRestaurantsList {
     @Test
     public void administratorSeeRestaurantsList() {
         driver.findElement(By.cssSelector("[href=\"/restaurants\"]")).click();
-        driver.findElement(By.cssSelector("[href=\"/?tag=pizza\"]")).isDisplayed();
+        Assert.assertEquals(driver.findElement(By.cssSelector("[href=\"/?tag=pizza\"]")).isDisplayed(), true);
+
     }
 }
