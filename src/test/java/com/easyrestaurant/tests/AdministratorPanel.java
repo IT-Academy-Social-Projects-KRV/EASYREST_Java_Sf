@@ -3,6 +3,7 @@ package com.easyrestaurant.tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
@@ -27,6 +28,7 @@ public class AdministratorPanel {
         driver.findElement(By.cssSelector("[href=\"/administrator-panel\"]")).click();
 
         driver.findElement(By.xpath("//*[@id=\"root\"]/main/div/header/div/div[2]/div[2]/div/button[4]/span[1]/span/span")).isDisplayed();
+        Assert.assertEquals(driver.findElement(By.xpath("//*[@id=\"root\"]/main/div/header/div/div[2]/div[2]/div/button[4]/span[1]/span/span")).isDisplayed(), true);
 
         driver.close();
 
