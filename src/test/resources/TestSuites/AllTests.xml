@@ -1,11 +1,43 @@
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="AllTests" verbose="1">
-	
-	<test name="FirstTest">
-		<classes>
-			<class name="com.easyrestaurant.tests.FirstTest" />
-		</classes>
-	</test>
+<suite name="FullUITestSuite" verbose="1">
+    <test name="HomePageTests">
+        <classes>
+            <class name="com.easyrestaurant.tests.HomePageTests"/>
+        </classes>
+    </test>
+
+    <test name="ModeratorPanelPageTests">
+        <parameter name="username" value="petermoderator@test.com"/>
+        <parameter name="password" value="1"/>
+        <classes>
+            <class name="com.easyrestaurant.tests.ModeratorPanelPageTests"/>
+        </classes>
+    </test>
+
+    <test name="PositiveLogInTest">
+        <parameter name="username" value="petermoderator@test.com"/>
+        <parameter name="password" value="1"/>
+        <classes>
+            <class name="com.easyrestaurant.tests.PositiveSignInPageTests"/>
+        </classes>
+    </test>
+
+    <test name="RestaurantsPageTests">
+        <parameter name="username" value="jacobcraig@test.com"/>
+        <parameter name="password" value="1111"/>
+        <classes>
+            <class name="com.easyrestaurant.tests.RestaurantsPageTests"/>
+        </classes>
+    </test>
+
+    <test name="WaiterPanelPageTests">
+        <parameter name="username" value="theresaalexander@test.com"/>
+        <parameter name="password" value="1"/>
+        <classes>
+            <class name="com.easyrestaurant.tests.WaiterPanelPageTests"/>
+        </classes>
+    </test>
+
 
 </suite>
