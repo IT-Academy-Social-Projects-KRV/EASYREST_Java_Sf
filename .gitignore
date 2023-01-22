@@ -2,3 +2,7 @@
 nbproject
 .project
 .settings
+target
+test-output
+.classpath
+.idea
