@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="FullUITestSuite" verbose="1">
+<suite name="AllTests" verbose="1">
     <test name="HomePageTests">
         <classes>
             <class name="com.easyrestaurant.tests.HomePageTests"/>
