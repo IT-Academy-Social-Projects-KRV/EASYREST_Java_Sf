@@ -37,13 +37,13 @@ public class AsAdmin_ICan_BanOwner {
 
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
-		WebElement ownerButton = driver.findElement(By.xpath("/html/body/div/div/ul/a[2]/div[2]/span"));
+		WebElement ownerButton = driver.findElement(By.xpath("/html/body/div/div/ul/a[2]"));
 		ownerButton.click();
 
 		WebElement activeOwnerButton = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr[1]/td[5]/button"));
 		WebElement statusMsg = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr[1]/td[4]/p"));
 
-		if (statusMsg.getText() == "Active"){
+		if (statusMsg.getText().equals("Active")){
 			activeOwnerButton.click();
 			statusMsg = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr[1]/td[4]/p"));
 		}
