@@ -9,19 +9,19 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class AsAdmin_ICan_BanModerator {
+public class AsAdmin_ICan_UnbanModerator {
 
 	@Test
 	public void test() {
-
-		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
-
+		
+		System.setProperty("web-driver.chrome.driver",
+				"src/main/resources/chromedriver");
+		
 		WebDriver driver = new ChromeDriver();
-
-
 		driver.manage().window().maximize();
 		String url = "http://localhost:3000";
 		driver.get(url);
+
 		WebElement signInButton = driver.findElement(By.xpath("//div[@id='root']/header//div[@class='UserMenu-root-109']/div/a[1]/span[@class='MuiButton-label-81']"));
 		signInButton.click();
 
@@ -36,19 +36,19 @@ public class AsAdmin_ICan_BanModerator {
 
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
-		WebElement moderatorButton = driver.findElement(By.xpath("/html/body/div/div/ul/a[3]"));
+		WebElement moderatorButton = driver.findElement(By.xpath("/html/body/div/div/ul/a[3]/div[2]/span"));
 		moderatorButton.click();
 
-		WebElement activeModeratorButton = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr/td[5]/button"));
-		WebElement statusMsg = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr/td[4]/p"));
+		WebElement statusMsg = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr[1]/td[4]/p"));
+		WebElement statusModeratorButton = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr[1]/td[5]/button"));
 
-		if (statusMsg.getText().equals("Active")){
-
-			activeModeratorButton.click();
+		if (statusMsg.getText().equals("Banned")){
+			statusModeratorButton.click();
 			statusMsg = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr[1]/td[4]/p"));
 		}
-		String expectedMsg = "Banned";
-		Assert.assertEquals(expectedMsg, statusMsg.getText());
+
+		String expectedActivityMsg = "Active";
+		Assert.assertEquals(expectedActivityMsg, statusMsg.getText());
 
 		driver.close();
 	}
