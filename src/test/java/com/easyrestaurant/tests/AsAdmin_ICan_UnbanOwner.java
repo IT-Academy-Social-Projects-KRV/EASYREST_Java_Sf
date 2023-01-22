@@ -37,13 +37,13 @@ public class AsAdmin_ICan_UnbanOwner {
 
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
-		WebElement ownerButton = driver.findElement(By.xpath("/html/body/div/div/ul/a[2]/div[2]/span"));
+		WebElement ownerButton = driver.findElement(By.xpath("/html/body/div/div/ul/a[2]"));
 		ownerButton.click();
 
 		WebElement bannedOwnerButton = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr[1]/td[5]/button"));
 		WebElement message = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr[1]/td[4]/p"));
 
-		if (message.getText() == "Banned"){
+		if (message.getText().equals("Banned")){
 			bannedOwnerButton.click();
 			message = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr[1]/td[4]/p"));
 		}
