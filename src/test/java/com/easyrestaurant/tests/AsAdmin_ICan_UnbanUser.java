@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public class AsAdmin_ICan_UnbanUser {
 
+<<<<<<< HEAD:src/test/java/com/easyrestaurant/tests/AsAdmin_ICan_UnbanUser.java
 	@Test
 	public void test() throws InterruptedException {
 		
@@ -22,21 +23,35 @@ public class AsAdmin_ICan_UnbanUser {
 		driver.manage().window().maximize();
 		String url = "http://localhost:3000";
 		driver.get(url);
+=======
+    @Test
+    public void test() {
 
-		WebElement signInButton = driver.findElement(By.xpath("//div[@id='root']/header//div[@class='UserMenu-root-109']/div/a[1]/span[@class='MuiButton-label-81']"));
-		signInButton.click();
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
 
-		WebElement emailElement = driver.findElement(By.name("email"));
-		emailElement.sendKeys("steveadmin@test.com");
+        WebDriver driver = new ChromeDriver();
 
-		WebElement passwordElement = driver.findElement(By.name("password"));
-		passwordElement.sendKeys("1");
 
-		WebElement logInButton = driver.findElement(By.xpath("/html//div[@id='root']/main//form//button[@type='submit']/span[@class='MuiButton-label-81']"));
-		logInButton.click();
+        driver.manage().window().maximize();
+        String url = "http://localhost:3000";
+        driver.get(url);
+>>>>>>> develop:src/test/java/com/easyrestaurant/tests/AsAdmin_ICan_BanOwner.java
 
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        WebElement signInButton = driver.findElement(By.xpath("//div[@id='root']/header//div[@class='UserMenu-root-109']/div/a[1]/span[@class='MuiButton-label-81']"));
+        signInButton.click();
 
+        WebElement emailElement = driver.findElement(By.name("email"));
+        emailElement.sendKeys("steveadmin@test.com");
+
+        WebElement passwordElement = driver.findElement(By.name("password"));
+        passwordElement.sendKeys("1");
+
+        WebElement logInButton = driver.findElement(By.xpath("/html//div[@id='root']/main//form//button[@type='submit']/span[@class='MuiButton-label-81']"));
+        logInButton.click();
+
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+<<<<<<< HEAD:src/test/java/com/easyrestaurant/tests/AsAdmin_ICan_UnbanUser.java
 		WebElement userButton = driver.findElement(By.xpath("/html/body/div/div/ul/a[1]"));
 		userButton.click();
 
@@ -54,3 +69,22 @@ public class AsAdmin_ICan_UnbanUser {
 
 	}
 }
+=======
+        WebElement ownerButton = driver.findElement(By.xpath("/html/body/div/div/ul/a[2]/div[2]/span"));
+        ownerButton.click();
+
+        WebElement activeOwnerButton = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr[1]/td[5]/button"));
+        WebElement statusMsg = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr[1]/td[4]/p"));
+
+        if (statusMsg.getText() == "Active") {
+            activeOwnerButton.click();
+            statusMsg = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr[1]/td[4]/p"));
+        }
+
+        String expectedActivityMsg = "Banned";
+        Assert.assertEquals(expectedActivityMsg, statusMsg.getText());
+
+        driver.close();
+    }
+}
+>>>>>>> develop:src/test/java/com/easyrestaurant/tests/AsAdmin_ICan_BanOwner.java
