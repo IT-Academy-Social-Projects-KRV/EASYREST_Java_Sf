@@ -9,10 +9,10 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class AsAdmin_ICan_UnbanOwner {
+public class AsAdmin_ICan_UnbanUser {
 
 	@Test
-	public void test() {
+	public void test() throws InterruptedException {
 		
 		System.setProperty("web-driver.chrome.driver",
 				"src/main/resources/chromedriver");
@@ -37,22 +37,20 @@ public class AsAdmin_ICan_UnbanOwner {
 
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
-		WebElement ownerButton = driver.findElement(By.xpath("/html/body/div/div/ul/a[2]"));
-		ownerButton.click();
+		WebElement userButton = driver.findElement(By.xpath("/html/body/div/div/ul/a[1]"));
+		userButton.click();
 
-		WebElement bannedOwnerButton = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr[1]/td[5]/button"));
-		WebElement message = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr[1]/td[4]/p"));
+		WebElement activeUserButton = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr[1]/td[5]/button"));
+		WebElement statusMsg = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr[1]/td[4]/p"));
 
-		if (message.getText().equals("Banned")){
-			bannedOwnerButton.click();
-			message = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr[1]/td[4]/p"));
+		if (statusMsg.getText().equals("Banned")){
+			activeUserButton.click();
+			statusMsg = driver.findElement(By.xpath("/html/body/div/div/main/div[2]/table/tbody/tr[1]/td[4]/p"));
 		}
 
-		String expectedMsg = "Active";
-		Assert.assertEquals(expectedMsg, message.getText());
-
+		String expectedActivityMsg = "Active";
+		Assert.assertEquals(expectedActivityMsg, statusMsg.getText());
 		driver.close();
+
 	}
-
-
 }
