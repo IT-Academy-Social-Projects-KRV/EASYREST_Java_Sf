@@ -96,6 +96,7 @@ public class CreateWaiterProfile {
 			assertNotNull(resultName);
 			assertEquals(resultName.isDisplayed(), true);
 			assertEquals(waiterNames[j], resultName.getText());
+			
 		}
 		
 	}
