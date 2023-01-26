@@ -29,6 +29,7 @@ public class ModeratorPanelPageTests extends TestUtils {
         Assert.assertEquals(snackBarText, "approved");
         Allure.step("Verifying that the snack bar text is approved");
         psql.executeUpdate("update restaurants set status = 0 where id = 4;");
+        psql.executeUpdate("update restaurants set status = 0 where id = 1;");
     }
 
     @Parameters({"username", "password"})
@@ -49,5 +50,6 @@ public class ModeratorPanelPageTests extends TestUtils {
         Assert.assertEquals(snackBarText, "disapproved");
         Allure.step("Verifying that the snack bar text is disapproved");
         psql.executeUpdate("update restaurants set status = 0 where id = 1;");
+        psql.executeUpdate("update restaurants set status = 0 where id = 4;");
     }
 }
