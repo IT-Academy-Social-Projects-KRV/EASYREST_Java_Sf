@@ -3,12 +3,17 @@ package com.easyrestaurant.pages;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class SignInPage extends BasePageObject {
 
-    private final By emailInputSelector = By.xpath("//input[@name='email']");
-    private final By passwordInputSelector = By.xpath("//input[@name='password']");
-    private final By submitButtonSelector = By.xpath("//button[@type='submit']");
+    @FindBy(xpath = "//input[@name='email']")
+    WebElement emailInputSelector;
+    @FindBy(xpath = "//input[@name='password']")
+    WebElement passwordInputSelector;
+    @FindBy(xpath = "//button[@type='submit']")
+    WebElement submitButtonSelector;
 
 
     public SignInPage(WebDriver driver, Logger log) {

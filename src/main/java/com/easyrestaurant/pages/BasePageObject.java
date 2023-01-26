@@ -28,34 +28,44 @@ public class BasePageObject extends Defaults {
         driver.get(url);
     }
 
-    protected void click(By locator) {
+    protected void click(WebElement webElement) {
+        waitForVisibilityOfElement(webElement);
+        webElement.click();
+    }
+
+    protected void type(WebElement webElement, String text) {
+        waitForVisibilityOfElement(webElement);
+        webElement.sendKeys(text);
+    }
+
+    protected WebElement find(WebElement webElement) {
+        waitForVisibilityOfElement(webElement);
+        return webElement;
+    }
+
+    protected List<WebElement> findAll(By locator) {
         waitForPresenceOfElement(locator);
-        driver.findElement(locator).click();
+        return driver.findElements(locator);
     }
 
-    protected void type(By locator, String text) {
-        waitForPresenceOfElement(locator);
-        driver.findElement(locator).sendKeys(text);
+    protected String getText(WebElement webElement) {
+        waitForVisibilityOfElement(webElement);
+        return webElement.getText();
     }
 
-    protected WebElement find(By selector) {
-        waitForPresenceOfElement(selector);
-        return driver.findElement(selector);
-    }
-
-    protected List<WebElement> findAll(By selector) {
-        waitForPresenceOfElement(selector);
-        return driver.findElements(selector);
-    }
-
-    protected String getText(By selector) {
-        waitForPresenceOfElement(selector);
-        return driver.findElement(selector).getText();
-    }
-
-    protected void waitForPresenceOfElement(By selector) {
+    protected void waitForVisibilityOfElement(WebElement webElement) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.presenceOfElementLocated(selector));
+        wait.until(ExpectedConditions.visibilityOf(webElement));
+    }
+
+    protected void waitForVisibilityOfAllElements(List<WebElement> list) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfAllElements(list));
+    }
+
+    protected void waitForPresenceOfElement(By locator) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
 

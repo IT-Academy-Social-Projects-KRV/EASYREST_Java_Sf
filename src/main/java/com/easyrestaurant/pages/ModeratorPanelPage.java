@@ -1,21 +1,28 @@
 package com.easyrestaurant.pages;
 
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
 public class ModeratorPanelPage extends BasePageObject {
 
-    private final By topNavBarButtonSelector = By.xpath("//button[@role='tab']");
-    private final By restaurantsNameSelector = By.xpath("//*[@id=\"root\"]/div/main/div[2]/div/div/div/div[1]/div/span[1]");
-    private final By approveButtonSelector = By.xpath("//*[@id=\"root\"]/div/main/div[2]/div/div/div/div[3]/button[2]");
-    private final By disapproveButtonSelector = By.xpath("//*[@id=\"root\"]/div/main/div[2]/div/div/div/div[3]/button[1]");
-    private final By approvedRestaurantsNameSelector = By.xpath("//*[@id=\"root\"]/div/main/div[2]/div/div/div/div[1]/div[2]/span[1]");
-    private final By restaurantStatusSelector = By.xpath("//*[@id=\"root\"]/div/main/div[2]/div/div/div/div[2]/div[2]/span");
-    private final By snackBar = By.id("client-snackbar");
+    @FindBy(xpath = "//button[@role='tab']")
+    List<WebElement> topNavBarButtonSelector;
+    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div[2]/div/div/div/div[1]/div/span[1]")
+    List<WebElement> restaurantsNameSelector;
+    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div[2]/div/div/div/div[3]/button[2]")
+    List<WebElement> approveButtonSelector;
+    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div[2]/div/div/div/div[3]/button[1]")
+    List<WebElement> disapproveButtonSelector;
+    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div[2]/div/div/div/div[1]/div[2]/span[1]")
+    List<WebElement> approvedRestaurantsNameSelector;
+    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div[2]/div/div/div/div[2]/div[2]/span")
+    List<WebElement> restaurantStatusSelector;
+    @FindBy(id = "client-snackbar")
+    WebElement snackBar;
 
 
     public ModeratorPanelPage(WebDriver driver, Logger log) {
@@ -23,9 +30,8 @@ public class ModeratorPanelPage extends BasePageObject {
     }
 
     public ModeratorPanelPage clickOnNavBarButton(String buttonToClick) {
-        waitForPresenceOfElement(topNavBarButtonSelector);
-        List<WebElement> bttnList = findAll(topNavBarButtonSelector);
-        for (WebElement e : bttnList) {
+        waitForVisibilityOfAllElements(topNavBarButtonSelector);
+        for (WebElement e : topNavBarButtonSelector) {
             if (e.getText().toLowerCase().contains(buttonToClick.toLowerCase())) {
                 e.click();
                 break;
@@ -35,11 +41,11 @@ public class ModeratorPanelPage extends BasePageObject {
     }
 
     public ModeratorPanelPage approveRestaurant(String restName) {
-        waitForPresenceOfElement(restaurantsNameSelector);
-        List<WebElement> restNames = findAll(restaurantsNameSelector);
-        for (WebElement e : restNames) {
+        waitForVisibilityOfAllElements(restaurantsNameSelector);
+        for (WebElement e : restaurantsNameSelector) {
             if (e.getText().equalsIgnoreCase(restName.toLowerCase())) {
-                click(approveButtonSelector);
+                for (WebElement f : approveButtonSelector)
+                    click(f);
                 break;
             }
         }
@@ -51,25 +57,27 @@ public class ModeratorPanelPage extends BasePageObject {
     }
 
     public ModeratorPanelPage disapproveRestaurant(String restName) {
-        waitForPresenceOfElement(disapproveButtonSelector);
-        var restNames = findAll(restaurantsNameSelector);
-        for (WebElement e : restNames) {
+        waitForVisibilityOfAllElements(disapproveButtonSelector);
+        for (WebElement e : restaurantsNameSelector) {
             if (e.getText().toLowerCase().contains(restName.toLowerCase())) {
-                click(disapproveButtonSelector);
-                break;
+                for (WebElement f : disapproveButtonSelector) {
+                    click(f);
+                    break;
+                }
             }
         }
         return this;
     }
 
     public boolean isRestaurantApproved(String restName, String status) {
-        waitForPresenceOfElement(approvedRestaurantsNameSelector);
-        List<WebElement> restNames = findAll(approvedRestaurantsNameSelector);
-        for (WebElement e : restNames) {
+        waitForVisibilityOfAllElements(approvedRestaurantsNameSelector);
+        for (WebElement e : approvedRestaurantsNameSelector) {
             if (e.getText().equalsIgnoreCase(restName.toLowerCase())) {
-                waitForPresenceOfElement(restaurantStatusSelector);
-                if (find(restaurantStatusSelector).getText().equalsIgnoreCase(status)) {
-                    return true;
+                waitForVisibilityOfAllElements(restaurantStatusSelector);
+                for (WebElement f : restaurantStatusSelector) {
+                    if (getText(f).equalsIgnoreCase(status)) {
+                        return true;
+                    }
                 }
             }
         }
