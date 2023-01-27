@@ -2,7 +2,6 @@
 nbproject
 .project
 .settings
-target
-test-output
-.classpath
-.idea
+test-output/
+allure-results/
+target/
