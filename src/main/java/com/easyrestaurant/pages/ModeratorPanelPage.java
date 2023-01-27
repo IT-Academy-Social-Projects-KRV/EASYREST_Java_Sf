@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class ModeratorPanelPage extends BasePageObject {
@@ -82,5 +83,24 @@ public class ModeratorPanelPage extends BasePageObject {
             }
         }
         return false;
+    }
+
+    public ModeratorPanelPage updateRestaurantsStatusInDataBase() {
+        try {
+            psql.connectToDb();
+            var results = psql.executeQueryAndGetResults("select status from restaurants where id in(1,4);");
+            if (results != null) {
+                while (results.next()) {
+                    int status = results.getInt("status");
+                    if (status != 0) {
+                        psql.executeUpdate("update restaurants set status = 0 where id in (1,4);");
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return this;
     }
 }

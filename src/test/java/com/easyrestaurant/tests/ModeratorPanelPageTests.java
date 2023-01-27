@@ -15,6 +15,7 @@ public class ModeratorPanelPageTests extends TestUtils {
     @Description("ID_13:As a moderator I can approve added restaurant")
     @Test(priority = 3)
     public void canApproveRestaurant(String username, String password) {
+        web.moderatorPanelPage().updateRestaurantsStatusInDataBase();
         web.homePage().navigateToHomePage();
         Allure.step("Home page is opened.");
         web.homePage().clickOnSignIn();
@@ -28,14 +29,14 @@ public class ModeratorPanelPageTests extends TestUtils {
         var snackBarText = web.moderatorPanelPage().getSnackBarText();
         Assert.assertEquals(snackBarText, "approved");
         Allure.step("Verifying that the snack bar text is approved");
-        psql.executeUpdate("update restaurants set status = 0 where id = 4;");
-        psql.executeUpdate("update restaurants set status = 0 where id = 1;");
+        web.moderatorPanelPage().updateRestaurantsStatusInDataBase();
     }
 
     @Parameters({"username", "password"})
     @Description("ID_14:As a moderator I can disapprove restaurant")
     @Test(priority = 4)
     public void canDisapproveRestaurant(String username, String password) {
+        web.moderatorPanelPage().updateRestaurantsStatusInDataBase();
         web.homePage().navigateToHomePage();
         Allure.step("Home page is opened");
         web.homePage().clickOnSignIn();
@@ -49,7 +50,6 @@ public class ModeratorPanelPageTests extends TestUtils {
         var snackBarText = web.moderatorPanelPage().getSnackBarText();
         Assert.assertEquals(snackBarText, "disapproved");
         Allure.step("Verifying that the snack bar text is disapproved");
-        psql.executeUpdate("update restaurants set status = 0 where id = 1;");
-        psql.executeUpdate("update restaurants set status = 0 where id = 4;");
+        web.moderatorPanelPage().updateRestaurantsStatusInDataBase();
     }
 }

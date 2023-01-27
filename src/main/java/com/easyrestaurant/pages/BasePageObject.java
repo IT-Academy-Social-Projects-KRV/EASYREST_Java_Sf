@@ -1,5 +1,6 @@
 package com.easyrestaurant.pages;
 
+import com.easyrestaurant.core.PSQL;
 import com.easyrestaurant.utils.Defaults;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -14,10 +15,12 @@ import java.util.List;
 public class BasePageObject extends Defaults {
     protected WebDriver driver;
     protected Logger log;
+    protected PSQL psql;
 
     public BasePageObject(WebDriver driver, Logger log) {
         this.driver = driver;
         this.log = log;
+        this.psql = new PSQL();
     }
 
     public String getCurrentURL() {

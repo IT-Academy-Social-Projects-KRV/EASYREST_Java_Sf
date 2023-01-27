@@ -10,7 +10,7 @@ public class PSQL extends Defaults {
     private Statement stm;
 
 
-    protected void connectToDb() {
+    public void connectToDb() {
         try {
             con = DriverManager.getConnection(SQL_URL, SQL_USERNAME, SQL_PASSWORD);
         } catch (SQLException e) {
@@ -21,19 +21,14 @@ public class PSQL extends Defaults {
     }
 
     //Use executeQuery method for SELECT statements
-    public void executeQueryAndGetResults(String query) {
+    public ResultSet executeQueryAndGetResults(String query) {
         try {
             stm = con.createStatement();
             res = stm.executeQuery(query);
-            while (res.next()) {
-                int id = res.getInt("id");
-                String name = res.getString("name");
-                System.out.println(id + ": " + name);
-            }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return res;
     }
 
     // Use executeUpdate method for DML (INSERT, UPDATE or DELETE)

@@ -28,6 +28,7 @@ public class RestaurantsPageTests extends TestUtils {
         var clientSnackBarText = web.restaurantsPage().getClientSnackBarText();
         Assert.assertEquals(clientSnackBarText, "Item was added", "The client snack bar text are not equal!");
         Allure.step("Verifying that the item was added to the cart");
+        web.restaurantsPage().hoverOverOrderCartItem();
         web.restaurantsPage().clickRemoveItemFromCart();
         takeScreenshot("Removed from cart");
         Allure.step("Clicking on remove item from cart button");
