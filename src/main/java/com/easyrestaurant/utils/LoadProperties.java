@@ -1,4 +1,4 @@
-package com.easyrestaurant.tests;
+package com.easyrestaurant.utils;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

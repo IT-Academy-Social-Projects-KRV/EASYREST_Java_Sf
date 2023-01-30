@@ -3,6 +3,7 @@ package com.easyrestaurant.tests;
 import java.sql.SQLException;
 import java.time.Duration;
 
+import com.easyrestaurant.core.TestUtils;
 import com.easyrestaurant.utils.CheckRestaurantExist;
 import com.easyrestaurant.utils.LoadProperties;
 import io.qameta.allure.Description;
@@ -17,90 +18,70 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-public class CreateAdministratorProfile {
+public class CreateAdministratorProfileTest extends TestUtils {
 	
-	WebDriver driver;
+//	WebDriver driver;
 	static LoadProperties properties = new LoadProperties();
 	static CheckRestaurantExist restaurant = new CheckRestaurantExist();
-	private final static String administratorName = "Zaio Baio",
-			administratorEmail = "zaio@bg.eu",
-			securePass = "Neznamtaziparola2",
-			phoneNumber = "0872142767";
 
 	@Parameters({"username", "password"})
 	@Description("Create Administrator Profile From owner's menu")
 	@Test(description = "Create Administrator Profile From owner's menu",
 			priority = 6)
 	public void createWaiterProfile() throws SQLException {
+		//Check if restaurant is exists
 		restaurant.findRestaurant();
 		//Load username and password from config.properties
 		properties.loadProperties();
-		final String email = properties.userEmail, password = properties.userPassword;
-			
-		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		
-		String url = "http://localhost:3000";
-		driver.get(url);
-		
-		WebElement login = driver.findElement(By.xpath("//*[@id=\"root\"]/header/div/div/div/a[1]"));
+		web.homePage().navigateToHomePage();
+
+		WebElement login = web.createAdministratorProfilePage().login();
 		login.click();
-		WebElement fieldEmail = driver.findElement(By.xpath("//*[@id=\"root\"]/main/div/div[2]/form/div/div[1]/div/div/input"));
-		fieldEmail.sendKeys(email);
-		WebElement fieldPass = driver.findElement(By.xpath("//*[@id=\"root\"]/main/div/div[2]/form/div/div[2]/div/div/input"));
-		fieldPass.sendKeys(password);
-		WebElement logIn = driver.findElement(By.xpath("//*[@id=\"root\"]/main/div/div[2]/form/div/div[3]/div/button"));
+		WebElement fieldEmail = web.createAdministratorProfilePage().fieldEmail();
+		fieldEmail.sendKeys(properties.userEmail);
+		WebElement fieldPass = web.createAdministratorProfilePage().fieldPass();
+		fieldPass.sendKeys(properties.userPassword);
+		WebElement logIn = web.createAdministratorProfilePage().logIn();
 		logIn.click();
-		WebElement profile = driver.findElement(By.xpath("//html//div[@id='root']/header/div//button[@type='button']//div[.='J']"));
+		WebElement profile = web.createAdministratorProfilePage().profile();
 		profile.click();
-		WebElement profileLink = driver.findElement(By.xpath("//html/body/div[2]/div[2]/ul/a"));
+		WebElement profileLink = web.createAdministratorProfilePage().profileLink();
 		profileLink.click();
-		WebElement myRestaurantsMenu = driver.findElement(By.xpath("//html/body/div/main/div/div/div/div[2]/div/a[4]"));
+		WebElement myRestaurantsMenu = web.createAdministratorProfilePage().myRestaurantsMenu();
 		myRestaurantsMenu.click();
 		
 		//I need to create restaurant before launch next step!
-		WebElement showOptions = driver.findElement(By.xpath("//html/body/div/main/div/div/div/div[1]/div[1]/div/div/div[2]/div/div[1]/button"));
+		WebElement showOptions = web.createAdministratorProfilePage().showOptions();
 		showOptions.click();
-		WebElement manage = driver.findElement(By.xpath("//html/body/div[2]/div[2]/ul/a"));
+		WebElement manage = web.createAdministratorProfilePage().manageBtn();
 		manage.click();
-		WebElement adminMenu = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div/div/ul/a[3]"));
+		WebElement adminMenu = web.createAdministratorProfilePage().adminMenu();
 		adminMenu.click();
-		WebElement newAdmin = driver.findElement(By.xpath("//*[@id=\"root\"]/div/main/div[2]/button"));
+		WebElement newAdmin = web.createAdministratorProfilePage().newAdmin();
 		newAdmin.click();
 		
-		WebElement regName = driver.findElement(By.name("name"));		
-		WebElement regEmail = driver.findElement(By.name("email"));
-		WebElement regPass = driver.findElement(By.name("password"));
-		WebElement regPhone = driver.findElement(By.name("phone_number"));
-		WebElement finishAdminProfile = driver.findElement(By.xpath("//button[@type='submit']"));
+		WebElement regName = web.createAdministratorProfilePage().regName();
+		WebElement regEmail = web.createAdministratorProfilePage().regEmail();
+		WebElement regPass = web.createAdministratorProfilePage().regPass();
+		WebElement regPhone = web.createAdministratorProfilePage().regPhone();
+		WebElement finishAdminProfile = web.createAdministratorProfilePage().finishAdminProfile();
 
 		regName.clear();
-		regName.sendKeys(administratorName);
+		regName.sendKeys(web.createAdministratorProfilePage().adminName());
 		regEmail.clear();
-		regEmail.sendKeys(administratorEmail);
+		regEmail.sendKeys(web.createAdministratorProfilePage().adminEmail());
 		regPass.clear();
-		regPass.sendKeys(securePass);
+		regPass.sendKeys(web.createAdministratorProfilePage().adminPass());
 		regPhone.clear();
-		regPhone.sendKeys(phoneNumber);
+		regPhone.sendKeys(web.createAdministratorProfilePage().adminPhone());
 		
 //		finishAdminProfile.click();
 		finishAdminProfile.sendKeys(Keys.ENTER);
-
-		String path = "//span[text()='" + administratorName + "']";
-		WebElement resultName = driver.findElement(By.xpath(path));
-//		WebElement resultName = driver.findElement(By.xpath("//*[text()='Zaio Baio']"));
+		WebElement resultName = web.createAdministratorProfilePage().myPath();
 
 		assertNotNull(resultName);
-		assertTrue(resultName.isDisplayed(), "Element " + path + " not found!");
-		assertEquals(administratorName, resultName.getText());
+		assertTrue(resultName.isDisplayed(), "The administrator's name: not found");
+		assertEquals(web.createAdministratorProfilePage().adminName(), resultName.getText());
 	}
-	
-	@AfterTest
-	public void endOfTest() {
-		driver.close();
-	}
-	
-	
+
 }

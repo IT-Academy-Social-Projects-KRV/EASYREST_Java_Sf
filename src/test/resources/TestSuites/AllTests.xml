@@ -39,5 +39,13 @@
         </classes>
     </test>
 
+    <test name="CreateAdministratorProfile">
+        <parameter name="username" value="jacobcraig@test.com"/>
+        <parameter name="password" value="1111"/>
+        <classes>
+            <class name="com.easyrestaurant.tests.CreateAdministratorProfileTest"/>
+        </classes>
+    </test>
+
 
 </suite>

@@ -4,7 +4,7 @@
 	
 	<test name="CreateWaitersTest">
 		<classes>
-			<class name="com.easyrestaurant.tests.CreateAdministratorProfile" />
+			<class name="com.easyrestaurant.tests.CreateAdministratorProfileTest" />
 		</classes>
 	</test>
 

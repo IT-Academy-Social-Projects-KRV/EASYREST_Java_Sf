@@ -13,6 +13,7 @@ public class Web {
     private SignInPage signInPage;
     private ModeratorPanelPage moderatorPanelPage;
     private WaiterPanelPage waiterPanelPage;
+    private CreateAdministratorProfilePage createAdministratorProfilePage;
 
     public Web(WebDriver driver, Logger log) {
         this.driver = driver;
@@ -58,6 +59,14 @@ public class Web {
             PageFactory.initElements(driver, waiterPanelPage);
         }
         return waiterPanelPage;
+    }
+
+    public CreateAdministratorProfilePage createAdministratorProfilePage() {
+        if (this.createAdministratorProfilePage == null) {
+            createAdministratorProfilePage = new CreateAdministratorProfilePage(driver, log);
+            PageFactory.initElements(driver, createAdministratorProfilePage);
+        }
+        return createAdministratorProfilePage;
     }
 
 
