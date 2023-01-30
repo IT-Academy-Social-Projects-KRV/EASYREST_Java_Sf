@@ -1,12 +1,11 @@
 package com.easyrestaurant.pages;
 
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CreateAdministratorProfilePage extends BasePageObject {
+public class CreateRestaurantFromOwnerPage extends BasePageObject {
 
     private final static String administratorName = "Zaio Baio",
             administratorEmail = "zaio@bg.eu",
@@ -26,33 +25,13 @@ public class CreateAdministratorProfilePage extends BasePageObject {
     WebElement profileLink;
     @FindBy(xpath = "//html/body/div/main/div/div/div/div[2]/div/a[4]")
     WebElement myRestaurantsMenu;
-    @FindBy(xpath = "//html/body/div/main/div/div/div/div[1]/div[1]/div/div/div[2]/div/div[1]/button")
-    WebElement showOptions;
-    @FindBy(xpath = "//html/body/div[2]/div[2]/ul/a")
-    WebElement manageBtn;
-    @FindBy(xpath = "//*[@id=\"root\"]/div/div/div/ul/a[3]")
-    WebElement adminMenu;
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div[2]/button")
-    WebElement newAdmin;
-    @FindBy(name = "name")
-    WebElement regName;
-    @FindBy(name = "email")
-    WebElement regEmail;
-    @FindBy(name = "password")
-    WebElement regPass;
-    @FindBy(name = "phone_number")
-    WebElement regPhone;
-    @FindBy(xpath = "//button[@type='submit']")
-    WebElement finishAdminProfile;
+    @FindBy(xpath = "//button[@title='Add restaurant']")
+    WebElement addRestaurant;
 
-    public CreateAdministratorProfilePage(WebDriver driver, Logger log) {
+    public CreateRestaurantFromOwnerPage(WebDriver driver, Logger log) {
         super(driver, log);
     }
 
-    public WebElement myPath() {
-        String path = "//span[text()='" + administratorName + "']";
-        return driver.findElement(By.xpath(path));
-    }
     public String adminName() {
         return administratorName;
     }
@@ -86,32 +65,8 @@ public class CreateAdministratorProfilePage extends BasePageObject {
     public void myRestaurantsMenu() {
         myRestaurantsMenu.click();
     }
-    public void showOptions() {
-        showOptions.click();
-    }
-    public void manageBtn() {
-        manageBtn.click();
-    }
-    public void adminMenu() {
-        adminMenu.click();
-    }
-    public void newAdmin() {
-        newAdmin.click();
-    }
-    public WebElement regName() {
-        return regName;
-    }
-    public WebElement regEmail() {
-        return regEmail;
-    }
-    public WebElement regPass() {
-        return regPass;
-    }
-    public WebElement regPhone() {
-        return regPhone;
-    }
-    public WebElement finishAdminProfile() {
-        return finishAdminProfile;
+    public void addRestaurants() {
+        addRestaurant.click();
     }
 
 }

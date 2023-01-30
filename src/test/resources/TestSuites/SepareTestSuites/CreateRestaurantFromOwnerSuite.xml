@@ -2,9 +2,9 @@
 
 <suite name="TestSuiteMartin" verbose="1">
 	
-	<test name="CreateAdministratorProfileTest">
+	<test name="CreateRestaurantFromOwnerTest">
 		<classes>
-			<class name="com.easyrestaurant.tests.CreateAdministratorProfileTest" />
+			<class name="com.easyrestaurant.tests.CreateRestaurantFromOwnerTest" />
 		</classes>
 	</test>
 
