@@ -13,6 +13,7 @@ public class Web {
     private SignInPage signInPage;
     private ModeratorPanelPage moderatorPanelPage;
     private WaiterPanelPage waiterPanelPage;
+    private AdminPanelPage adminPanelPage;
 
     public Web(WebDriver driver, Logger log) {
         this.driver = driver;
@@ -58,6 +59,14 @@ public class Web {
             PageFactory.initElements(driver, waiterPanelPage);
         }
         return waiterPanelPage;
+    }
+    
+    public AdminPanelPage adminPanelPage() {
+        if (this.adminPanelPage == null) {
+            adminPanelPage = new AdminPanelPage(driver, log);
+            PageFactory.initElements(driver, adminPanelPage);
+        }
+        return adminPanelPage;
     }
 
 
