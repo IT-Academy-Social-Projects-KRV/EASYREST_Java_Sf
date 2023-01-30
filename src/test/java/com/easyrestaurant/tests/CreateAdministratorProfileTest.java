@@ -1,30 +1,38 @@
 package com.easyrestaurant.tests;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
-
+import java.sql.SQLException;
 import java.time.Duration;
 
+import com.easyrestaurant.utils.CheckRestaurantExist;
+import com.easyrestaurant.utils.LoadProperties;
+import io.qameta.allure.Description;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
+import static org.testng.Assert.*;
 
 public class CreateAdministratorProfile {
 	
 	WebDriver driver;
 	static LoadProperties properties = new LoadProperties();
+	static CheckRestaurantExist restaurant = new CheckRestaurantExist();
 	private final static String administratorName = "Zaio Baio",
 			administratorEmail = "zaio@bg.eu",
 			securePass = "Neznamtaziparola2",
 			phoneNumber = "0872142767";
 
+	@Parameters({"username", "password"})
+	@Description("Create Administrator Profile From owner's menu")
 	@Test(description = "Create Administrator Profile From owner's menu",
-			priority = 1)
-	public void createWaiterProfile() throws InterruptedException {
+			priority = 6)
+	public void createWaiterProfile() throws SQLException {
+		restaurant.findRestaurant();
 		//Load username and password from config.properties
 		properties.loadProperties();
 		final String email = properties.userEmail, password = properties.userPassword;
@@ -85,7 +93,7 @@ public class CreateAdministratorProfile {
 //		WebElement resultName = driver.findElement(By.xpath("//*[text()='Zaio Baio']"));
 
 		assertNotNull(resultName);
-		assertEquals(resultName.isDisplayed(), true);
+		assertTrue(resultName.isDisplayed(), "Element " + path + " not found!");
 		assertEquals(administratorName, resultName.getText());
 	}
 	
