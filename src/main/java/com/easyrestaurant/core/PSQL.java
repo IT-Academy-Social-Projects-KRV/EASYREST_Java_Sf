@@ -42,7 +42,7 @@ public class PSQL extends Defaults {
     }
 
 
-    protected void tearDown() {
+    public void tearDown() {
         try {
             con.close();
         } catch (SQLException e) {
