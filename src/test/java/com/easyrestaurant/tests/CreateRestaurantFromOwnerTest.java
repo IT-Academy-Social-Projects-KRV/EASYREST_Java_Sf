@@ -29,11 +29,9 @@ public class CreateRestaurantFromOwnerTest extends TestUtils {
         web.createRestaurantFromOwnerPage().profileLink();
         web.createRestaurantFromOwnerPage().myRestaurantsMenu();
         web.createRestaurantFromOwnerPage().addRestaurants();
+        web.createRestaurantFromOwnerPage().addName();
+        web.createRestaurantFromOwnerPage().addAddress();
+        web.createRestaurantFromOwnerPage().submitRestaurantsRecord();
 
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
     }
 }

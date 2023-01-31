@@ -25,7 +25,7 @@ public class CreateAdministratorProfileTest extends TestUtils {
 	@Test(description = "Create Administrator Profile From owner's menu",
 			priority = 7)
 	public void createWaiterProfile() throws SQLException {
-		//Check if restaurant is exists
+		//Check if restaurant is exists in the DB
 //		restaurant.findRestaurant();
 		//Load username and password from config.properties
 		properties.loadProperties();
@@ -42,6 +42,7 @@ public class CreateAdministratorProfileTest extends TestUtils {
 		web.createAdministratorProfilePage().myRestaurantsMenu();
 		
 		//I need to create restaurant before launch next step!
+		//Run at least one time 'createRestaurantFromOwnerTest' or 'createRestaurantFromOwnerSuite' in order to fix the issue
 		web.createAdministratorProfilePage().showOptions();
 		web.createAdministratorProfilePage().manageBtn();
 		web.createAdministratorProfilePage().adminMenu();

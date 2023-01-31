@@ -27,6 +27,12 @@ public class CreateRestaurantFromOwnerPage extends BasePageObject {
     WebElement myRestaurantsMenu;
     @FindBy(xpath = "//button[@title='Add restaurant']")
     WebElement addRestaurant;
+    @FindBy(xpath = "//input[@name='name']")
+    WebElement inputName;
+    @FindBy(xpath = "//input[@name='address']")
+    WebElement inputAddress;
+    @FindBy(xpath = "//button[@type='submit']")
+    WebElement btnSubmit;
 
     public CreateRestaurantFromOwnerPage(WebDriver driver, Logger log) {
         super(driver, log);
@@ -67,6 +73,15 @@ public class CreateRestaurantFromOwnerPage extends BasePageObject {
     }
     public void addRestaurants() {
         addRestaurant.click();
+    }
+    public void addName() {
+        inputName.sendKeys("My new rest");
+    }
+    public void addAddress() {
+        inputAddress.sendKeys("Bulgaria, Sofia");
+    }
+    public void submitRestaurantsRecord() {
+        btnSubmit.click();
     }
 
 }
