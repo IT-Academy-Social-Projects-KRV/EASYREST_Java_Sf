@@ -14,6 +14,7 @@ public class Web {
     private ModeratorPanelPage moderatorPanelPage;
     private WaiterPanelPage waiterPanelPage;
     private AdminPanelPage adminPanelPage;
+    private AdministratorPanelPage administratorPanelPage;
 
     public Web(WebDriver driver, Logger log) {
         this.driver = driver;
@@ -60,7 +61,7 @@ public class Web {
         }
         return waiterPanelPage;
     }
-    
+
     public AdminPanelPage adminPanelPage() {
         if (this.adminPanelPage == null) {
             adminPanelPage = new AdminPanelPage(driver, log);
@@ -69,5 +70,13 @@ public class Web {
         return adminPanelPage;
     }
 
+    public AdministratorPanelPage administratorPanelPage() {
+
+        if (this.administratorPanelPage == null) {
+            administratorPanelPage = new AdministratorPanelPage(driver, log);
+            PageFactory.initElements(driver, administratorPanelPage);
+        }
+        return administratorPanelPage;
+    }
 
 }
