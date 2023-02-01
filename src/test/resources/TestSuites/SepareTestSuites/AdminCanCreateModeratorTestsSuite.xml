@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="AdminCanCreateModeratorTestsSuite" verbose="1">
+
+<test name="AdminCanCreateModeratorTests">
+    <parameter name="username" value="steveadmin@test.com"/>
+    <parameter name="password" value="1"/>
+    <parameter name="moderatorName" value="Ivan Ivanov"/>
+    <parameter name="moderatorEmail" value="ivan@test.com"/>
+    <parameter name="moderatorInvalidEmail" value="ivan@test"/>
+    <parameter name="moderatorPhoneNumber" value="+359123456789"/>
+    <parameter name="moderatorPassword" value="12345678"/>
+    <parameter name="moderatorRepeatedPassword" value="12345678"/>
+    <classes>
+        <class name="com.easyrestaurant.tests.AdminCanCreateModeratorTests"/>
+    </classes>
+</test>
+
+</suite>
