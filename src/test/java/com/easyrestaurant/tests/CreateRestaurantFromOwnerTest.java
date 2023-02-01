@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.*;
+
 public class CreateRestaurantFromOwnerTest extends TestUtils {
 
     static LoadProperties properties = new LoadProperties();
@@ -33,5 +35,7 @@ public class CreateRestaurantFromOwnerTest extends TestUtils {
         web.createRestaurantFromOwnerPage().addAddress();
         web.createRestaurantFromOwnerPage().submitRestaurantsRecord();
 
+        assertNotNull(web.createRestaurantFromOwnerPage().checkRestaurantName());
+        assertTrue(web.createRestaurantFromOwnerPage().checkRestaurantName().isDisplayed(), "The restaurant: Not found");
     }
 }
