@@ -76,4 +76,17 @@ public class AdministratorPanelPage extends BasePageObject {
         return pageIsDisplayed(waiters);
 
     }
+
+    public boolean pizzaPageIsDisplayed() {
+        return pageIsDisplayed(pizzaButton);
+
+    }
+
+    public boolean tagsListIsDisplayed() {
+        return pageIsDisplayed(tagsList);
+    }
+
+    public boolean administratorPanelIsDisplayed() {
+        return pageIsDisplayed(ordersTab);
+    }
 }

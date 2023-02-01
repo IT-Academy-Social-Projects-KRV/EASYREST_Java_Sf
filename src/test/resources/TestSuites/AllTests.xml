@@ -101,5 +101,13 @@
         </classes>
     </test>
 
+    <test name="AdministratorTestSuite">
+        <parameter name="username" value="emilyfitzgerald@test.com"/>
+        <parameter name="password" value="1"/>
+        <classes>
+            <class name="com.easyrestaurant.tests.AdministratorPanelTests"/>
+        </classes>
+    </test>
+
 
 </suite>
