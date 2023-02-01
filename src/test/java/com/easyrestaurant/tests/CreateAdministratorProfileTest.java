@@ -4,7 +4,6 @@ import java.sql.SQLException;
 
 
 import com.easyrestaurant.core.TestUtils;
-import com.easyrestaurant.utils.CheckRestaurantExist;
 import com.easyrestaurant.utils.LoadProperties;
 import io.qameta.allure.Description;
 import org.openqa.selenium.Keys;
@@ -24,7 +23,7 @@ public class CreateAdministratorProfileTest extends TestUtils {
 	@Description("Create Administrator Profile From owner's menu")
 	@Test(description = "Create Administrator Profile From owner's menu",
 			priority = 7)
-	public void createWaiterProfile() throws SQLException {
+	public void createAdministratorProfile() throws SQLException {
 		//Check if restaurant is exists in the DB
 //		restaurant.findRestaurant();
 		//Load username and password from config.properties
