@@ -69,4 +69,38 @@ public class WaiterPanelPage extends BasePageObject {
         }
         return clInfo;
     }
+
+    public WaiterPanelPage updateDatabaseIfNoOrdersInProgress(String waiterEmail) {
+        psql.connectToDb();
+        var ordersInProgress = psql.executeQueryAndGetResults("select orders.id, orders.status " +
+                "from orders " +
+                "left join users on orders.waiter_id = users.id " +
+                "where users.email = '"+waiterEmail+"' and orders.status = 'In progress';");
+        int orderId = 0;
+        String orderStatus = null;
+        try {
+            while (ordersInProgress.next()) {
+                orderId = ordersInProgress.getInt("id");
+                orderStatus = ordersInProgress.getString("status");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (orderId == 0 && orderStatus == null) {
+            var ordersInHistory = psql.executeQueryAndGetResults("select orders.id, orders.status " +
+                    "from orders " +
+                    "left join users on orders.waiter_id = users.id " +
+                    "where users.email = '"+waiterEmail+"' and orders.status = 'History' limit 1;");
+            try {
+                while (ordersInHistory.next()) {
+                    orderId = ordersInHistory.getInt("id");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            psql.executeUpdate("update orders set status = 'In progress' where id = "+orderId+";");
+        }
+        psql.tearDown();
+        return this;
+    }
 }

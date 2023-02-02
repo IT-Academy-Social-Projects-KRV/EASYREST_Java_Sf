@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="AdminCanBanOwnerTestsSuite" verbose="1">
+
+<test name="AdminCanBanOwnerTests">
+    <parameter name="username" value="steveadmin@test.com"/>
+    <parameter name="password" value="1"/>
+    <classes>
+        <class name="com.easyrestaurant.tests.AdminCanBanOwnerTests"/>
+    </classes>
+</test>
+
+</suite>

@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="TestSuiteMartin" verbose="1">
+	
+	<test name="CreateRestaurantFromOwnerTest">
+		<classes>
+			<class name="com.easyrestaurant.tests.CreateRestaurantFromOwnerTest" />
+		</classes>
+	</test>
+
+</suite>
