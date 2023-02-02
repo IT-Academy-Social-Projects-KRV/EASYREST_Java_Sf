@@ -100,14 +100,19 @@
             <class name="com.easyrestaurant.tests.AdminCanCreateModeratorTests"/>
         </classes>
     </test>
-
-    <test name="AdministratorTestSuite">
+    <test name="CreateAdministratorProfile">
+        <parameter name="username" value="jacobcraig@test.com"/>
+        <parameter name="password" value="1111"/>
+        <classes>
+            <class name="com.easyrestaurant.tests.CreateAdministratorProfileTest"/>
+        </classes>
+    </test>
+    
+     <test name="AdministratorTestSuite">
         <parameter name="username" value="emilyfitzgerald@test.com"/>
         <parameter name="password" value="1"/>
         <classes>
             <class name="com.easyrestaurant.tests.AdministratorPanelTests"/>
-        </classes>
     </test>
-
 
 </suite>
