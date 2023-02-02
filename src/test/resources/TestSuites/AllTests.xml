@@ -115,4 +115,15 @@
             <class name="com.easyrestaurant.tests.AdministratorPanelTests"/>
     </test>
 
+     <test name="UnauthorizedUserRestaurantListNew">
+        <classes>
+            <class name="com.easyrestaurant.tests.UnauthorizedUserRestaurantListNew"/>
+        </classes>
+    </test>
+
+    <test name="UnauthorizedUserDetailsRestaurantNew">
+        <classes>
+            <class name="com.easyrestaurant.tests.UnauthorizedUserDetailsRestaurantNew"/>
+        </classes>
+    </test>
 </suite>

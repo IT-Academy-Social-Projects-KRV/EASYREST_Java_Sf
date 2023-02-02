@@ -96,4 +96,11 @@ public class Web {
         }
         return administratorPanelPage;
     }
+     public UnauthorizedUserPanelPage unauthorizedUserPanelPage() {
+        if (this.unauthorizedUserPanelPage == null) {
+            unauthorizedUserPanelPage = new UnauthorizedUserPanelPage(driver, log);
+            PageFactory.initElements(driver, unauthorizedUserPanelPage);
+        }
+        return unauthorizedUserPanelPage;
+    }
 }
