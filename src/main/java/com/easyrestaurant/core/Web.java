@@ -13,8 +13,11 @@ public class Web {
     private SignInPage signInPage;
     private ModeratorPanelPage moderatorPanelPage;
     private WaiterPanelPage waiterPanelPage;
+    private CreateAdministratorProfilePage createAdministratorProfilePage;
+    private CreateRestaurantFromOwnerPage createRestaurantFromOwnerPage;
+    private AdminPanelPage adminPanelPage;
+    private AdministratorPanelPage administratorPanelPage;
 
-    private UnauthorizedUserPanelPage unauthorizedUserPanelPage;
 
     public Web(WebDriver driver, Logger log) {
         this.driver = driver;
@@ -62,13 +65,35 @@ public class Web {
         return waiterPanelPage;
     }
 
-    public UnauthorizedUserPanelPage unauthorizedUserPanelPage() {
-        if (this.unauthorizedUserPanelPage == null) {
-            unauthorizedUserPanelPage = new UnauthorizedUserPanelPage(driver, log);
-            PageFactory.initElements(driver, unauthorizedUserPanelPage);
+    public AdminPanelPage adminPanelPage() {
+        if (this.adminPanelPage == null) {
+            adminPanelPage = new AdminPanelPage(driver, log);
+            PageFactory.initElements(driver, adminPanelPage);
         }
-        return unauthorizedUserPanelPage;
+        return adminPanelPage;
     }
 
+    public CreateAdministratorProfilePage createAdministratorProfilePage() {
+        if (this.createAdministratorProfilePage == null) {
+            createAdministratorProfilePage = new CreateAdministratorProfilePage(driver, log);
+            PageFactory.initElements(driver, createAdministratorProfilePage);
+        }
+        return createAdministratorProfilePage;
+    }
 
+    public CreateRestaurantFromOwnerPage createRestaurantFromOwnerPage() {
+        if (this.createRestaurantFromOwnerPage == null) {
+            createRestaurantFromOwnerPage = new CreateRestaurantFromOwnerPage(driver, log);
+            PageFactory.initElements(driver, createRestaurantFromOwnerPage);
+        }
+        return createRestaurantFromOwnerPage;
+    }
+    
+        public AdministratorPanelPage administratorPanelPage() {
+        if (this.administratorPanelPage == null) {
+            administratorPanelPage = new AdministratorPanelPage(driver, log);
+            PageFactory.initElements(driver, administratorPanelPage);
+        }
+        return administratorPanelPage;
+    }
 }
