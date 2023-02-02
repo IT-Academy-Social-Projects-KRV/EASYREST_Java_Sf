@@ -16,6 +16,7 @@ public class Web {
     private CreateAdministratorProfilePage createAdministratorProfilePage;
     private CreateRestaurantFromOwnerPage createRestaurantFromOwnerPage;
     private AdminPanelPage adminPanelPage;
+    private AdministratorPanelPage administratorPanelPage;
 
 
     public Web(WebDriver driver, Logger log) {
@@ -63,7 +64,7 @@ public class Web {
         }
         return waiterPanelPage;
     }
-    
+
     public AdminPanelPage adminPanelPage() {
         if (this.adminPanelPage == null) {
             adminPanelPage = new AdminPanelPage(driver, log);
@@ -87,6 +88,12 @@ public class Web {
         }
         return createRestaurantFromOwnerPage;
     }
-
-
+    
+        public AdministratorPanelPage administratorPanelPage() {
+        if (this.administratorPanelPage == null) {
+            administratorPanelPage = new AdministratorPanelPage(driver, log);
+            PageFactory.initElements(driver, administratorPanelPage);
+        }
+        return administratorPanelPage;
+    }
 }
