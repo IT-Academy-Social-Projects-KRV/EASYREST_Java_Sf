@@ -13,7 +13,6 @@ public class WaiterPanelPageTests extends TestUtils {
     @Description("ID_20:As a waiter I can close orders that have been sent for preparation by me, when they are complete")
     @Test(priority = 5)
     public void canCloseOrder(String username, String password) {
-        web.waiterPanelPage().updateDatabaseIfNoOrdersInProgress(username);
         web.homePage().navigateToHomePage();
         Allure.step("Home page is opened");
         web.homePage().clickOnSignIn();
